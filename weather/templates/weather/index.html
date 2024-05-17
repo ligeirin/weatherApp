@@ -1,9 +1,31 @@
-<h1>Locales</h1>
+{% load static %}
 
-<a href="{% url 'configure' %}">CONFIGURATION</a>
-
-<ul>
-  {% for locale in locales %}
-  <li>{{ locale }} - {{ locale.weather.current.temp_c }} °C </li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'weather/style.css' %}"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div class="section">
+      <div class="wrapper">
+        <header class="header">
+          <span>Weather App</span>
+        </header>
+        <section class="body">
+          {% for locale in locales %}
+          <span>{{ locale }} - {{ locale.weather.current.temp_c }} °C</span>
+          {% endfor %}
+        </section>
+        <footer class="footer">
+          <a href="{% url 'configure' %}">C</a>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

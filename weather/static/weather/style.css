@@ -1,0 +1,48 @@
+* {
+  /* color: white; */
+}
+
+body {
+  /* background-color: black; */
+  overflow: hidden;
+}
+
+.section {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 300px;
+  height: 500px;
+  outline: 2px solid red;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.header {
+  outline: 2px solid magenta;
+  height: 10%;
+}
+
+.body {
+  outline: 2px solid lime;
+  height: 80%;
+}
+
+.footer {
+  outline: 2px solid blue;
+  height: 10%;
+}
+
+.footer,
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
