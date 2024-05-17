@@ -1,0 +1,6 @@
+<form method="post" action="{% url 'saveConfiguration' %}">
+  {% csrf_token %}
+  <h1>Configuration</h1>
+  {{ form }}
+  <button type="submit">Save</button>
+</form>

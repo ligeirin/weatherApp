@@ -1,0 +1,9 @@
+<h1>Locales</h1>
+
+<a href="{% url 'configure' %}">CONFIGURATION</a>
+
+<ul>
+  {% for locale in locales %}
+  <li>{{ locale }} - {{ locale.weather.current.temp_c }} °C </li>
+  {% endfor %}
+</ul>
