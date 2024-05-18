@@ -1,5 +1,18 @@
 * {
   /* color: white; */
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  background-color: rgb(31, 31, 31);
+}
+
+@font-face {
+  font-family: "Montserrat", sans-serif;
+  src: url("./Montserrat.ttf");
 }
 
 body {
@@ -8,7 +21,7 @@ body {
 }
 
 .section {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
 
@@ -20,24 +33,26 @@ body {
 .wrapper {
   width: 300px;
   height: 500px;
-  outline: 2px solid red;
   border-radius: 8px;
   overflow: hidden;
+
+  position: relative;
 }
 
 .header {
-  outline: 2px solid magenta;
   height: 10%;
-}
-
-.body {
-  outline: 2px solid lime;
-  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .footer {
-  outline: 2px solid blue;
   height: 10%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .footer,
@@ -45,4 +60,276 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.55);
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.wrapper-night-bg {
+  background: rgb(31, 5, 60);
+  background: linear-gradient(
+    0deg,
+    rgba(31, 5, 60, 1) 0%,
+    rgba(0, 33, 112, 1) 100%
+  );
+  color: white;
+}
+.wrapper-golden-hour-bg {
+  background: rgb(255, 139, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 139, 0, 1) 20%,
+    rgba(0, 123, 255, 1) 100%
+  );
+  color: white;
+}
+.wrapper-day-bg {
+  background: rgb(70, 207, 252);
+  background: linear-gradient(
+    0deg,
+    rgba(70, 207, 252, 1) 0%,
+    rgba(63, 185, 251, 1) 100%
+  );
+  color: white;
+}
+
+.grass-filter,
+.body::before {
+  position: absolute;
+  bottom: 0;
+  top: 80%;
+  left: 0;
+  right: 0;
+  z-index: 1 !important;
+}
+
+.grass-filter-day {
+  background: rgba(70, 207, 252, 0.4);
+}
+
+.grass-filter-golden-hour {
+  background: rgba(255, 139, 0, 0.4);
+}
+
+.grass-filter-night {
+  background: rgba(0, 33, 112, 0.4);
+}
+
+.body::before {
+  content: "";
+
+  background: url("./grass.jpg");
+  background-position-x: 0px;
+  background-size: 50px;
+
+  animation-name: backgroundAnimation;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    background-position-x: 0px;
+  }
+  100% {
+    background-position-x: 100px;
+  }
+}
+
+.header *,
+.footer * {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  z-index: 1000;
+}
+
+.tab-night-bg {
+  background: rgba(0, 33, 112, 1);
+  color: white;
+}
+.tab-golden-hour-bg {
+  background: rgb(255, 139, 0);
+  color: white;
+}
+.tab-day-bg {
+  background: rgb(70, 207, 252);
+  color: white;
+}
+
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: inherit;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 12px;
+
+  position: relative;
+  padding: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.weather-info * {
+  z-index: 10;
+}
+
+.weather-info span {
+  text-align: center;
+}
+
+.additional-info {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-evenly;
+
+  gap: 14px;
+}
+
+.locale-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.locale-info :first-child {
+  font-size: 1.25rem;
+}
+
+.locale-info :last-child {
+  font-size: 0.8rem;
+}
+
+.temperature-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.temperature-info :first-child {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.temperature-info :last-child {
+  font-size: 0.8rem;
+}
+
+.weather-icons {
+  position: absolute;
+  color: white;
+  top: 15%;
+  left: 0;
+}
+
+.moon-icon {
+  top: 25%;
+  left: 25%;
+  scale: 8;
+
+  animation-name: moonAnimation;
+  animation-duration: 10s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+  color: rgb(243, 243, 243);
+}
+
+@keyframes moonAnimation {
+  0% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(-15deg);
+  }
+}
+
+.day-icon {
+  top: 20%;
+  left: 70%;
+}
+
+.golden-hour-icon {
+  top: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.sun-icon {
+  scale: 8;
+  width: 16px;
+
+  animation-name: sunAnimation;
+  animation-duration: 20s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+
+  color: rgb(255, 220, 66);
+}
+
+@keyframes sunAnimation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cloud-icon {
+  top: 30%;
+  left: 60%;
+  scale: 5;
+
+  animation-name: cloudAnimation;
+  animation-duration: 6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+  color: rgb(243, 243, 243);
+}
+
+@keyframes cloudAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+.weather-background {
+  background-color: rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1 !important;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.visible {
+  opacity: 1;
+}
+
+.hidden {
+  opacity: 0;
 }

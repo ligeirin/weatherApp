@@ -5,6 +5,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="{% static 'fontawesomefree/css/fontawesome.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/brands.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'fontawesomefree/css/solid.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link
       rel="stylesheet"
       href="{% static 'weather/style.css' %}"
@@ -13,17 +29,63 @@
   </head>
   <body>
     <div class="section">
-      <div class="wrapper">
-        <header class="header">
+      <div class="wrapper wrapper-{{ locale.weather.location.timeOfDay }}-bg">
+        <header class="header tab-{{ locale.weather.location.timeOfDay }}-bg">
           <span>Weather App</span>
         </header>
         <section class="body">
-          {% for locale in locales %}
-          <span>{{ locale }} - {{ locale.weather.current.temp_c }} °C</span>
-          {% endfor %}
+          <i
+            class="weather-icons {%if locale.weather.location.timeOfDay == 'night' %} visible {% else %} hidden {%endif%} moon-icon fa-solid fa-moon"
+          ></i>
+          <i
+            class="weather-icons {%if locale.weather.location.timeOfDay == 'day' or locale.weather.location.timeOfDay == 'golden-hour' %} visible {% else %} hidden {%endif%}  {{ locale.weather.location.timeOfDay }}-icon sun-icon fa-solid fa-sun"
+          ></i>
+          <i class="weather-icons visible cloud-icon fa-solid fa-cloud"></i>
+
+          <div
+            class="grass-filter grass-filter-{{ locale.weather.location.timeOfDay }}"
+          ></div>
+
+          <div class="weather-info">
+            <div class="weather-background"></div>
+
+            <div class="locale-info">
+              <span>{{ locale.city }}</span>
+              <span
+                >{{ locale.weather.location.region }}, {{ locale.weather.location.country }}</span
+              >
+            </div>
+
+            <div class="temperature-info">
+              <span class="temperature-main"
+                >{{ locale.weather.current.temp_c }} °C</span
+              >
+              <span class="temperature-sub"
+                >Feels like {{ locale.weather.current.feelslike_c }} °C
+              </span>
+            </div>
+
+            <span class="condition"
+              >{{ locale.weather.current.condition.text }}</span
+            >
+
+            <div class="additional-info">
+              <div class="wind-info">
+                <i class="fa-solid fa-wind"></i>
+                <span>{{ locale.weather.current.wind_kph }} km/h</span>
+              </div>
+
+              <div class="humidity-info">
+                <i class="fa-solid fa-droplet"></i>
+                <span>{{ locale.weather.current.humidity }}%</span>
+              </div>
+            </div>
+          </div>
         </section>
-        <footer class="footer">
-          <a href="{% url 'configure' %}">C</a>
+        <footer class="footer tab-{{ locale.weather.location.timeOfDay }}-bg">
+          <a href="{% url 'configure' %}"
+            ><i class="fa-solid fa-gear"></i> Configuration</a
+          >
         </footer>
       </div>
     </div>
